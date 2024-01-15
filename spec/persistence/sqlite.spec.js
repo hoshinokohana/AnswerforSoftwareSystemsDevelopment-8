@@ -65,6 +65,24 @@ test('it can update an existing item', async () => {
     expect(items[0].completed).toBe(!ITEM.completed);
 });
 
+const db = require('../../src/persistence/sqlite');
+
+describe('Update functionality', () => {
+  test('it updates the completed status of an item', async () => {
+    // Step 1: Create a new item
+    const newItem = await db.addItem({ name: 'Test Item', completed: false });
+
+    // Step 2: Update the item
+    await db.updateItem(newItem.id, { completed: true });
+
+    // Step 3: Retrieve the updated item
+    const updatedItem = await db.getItem(newItem.id);
+
+    // Step 4: Assert that the completed status is updated
+    expect(updatedItem.completed).toBe(true);
+  });
+});
+
 
 test('it can get a single item', async () => {
     await db.init();
