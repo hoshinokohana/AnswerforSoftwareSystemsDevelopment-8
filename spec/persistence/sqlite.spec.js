@@ -41,7 +41,7 @@ test('it can update an existing item', async () => {
     console.log(items);
 
     // Check that there is one item in the array
-    expect(items.length).toBe(0);
+    expect(items.length).toBe(1);
 });
 
 
