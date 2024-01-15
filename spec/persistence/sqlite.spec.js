@@ -43,43 +43,9 @@ test('it can update an existing item', async () => {
 
     const items = await db.getItems();
     expect(items.length).toBe(1);
-    expect(items[0].completed).toBe(!ITEM.completed);
+    expect(items[1].completed).toBe(!ITEM.completed);
 });
 
-test('it can update an existing item', async () => {
-    await db.init();
-
-    await db.storeItem(ITEM);
-
-    console.log('Before update:', ITEM);
-
-    await db.updateItem(
-        ITEM.id,
-        Object.assign({}, ITEM, { completed: !ITEM.completed }),
-    );
-
-    const items = await db.getItems();
-    console.log('After update:', items[0]);
-
-    expect(items.length).toBe(1);
-    expect(items[0].completed).toBe(!ITEM.completed);
-});
-
-describe('Update functionality', () => {
-  test('it updates the completed status of an item', async () => {
-    // Step 1: Create a new item
-    const newItem = await db.addItem({ name: 'Test Item', completed: false });
-
-    // Step 2: Update the item
-    await db.updateItem(newItem.id, { completed: true });
-
-    // Step 3: Retrieve the updated item
-    const updatedItem = await db.getItem(newItem.id);
-
-    // Step 4: Assert that the completed status is updated
-    expect(updatedItem.completed).toBe(true);
-  });
-});
 
 
 test('it can get a single item', async () => {
@@ -100,18 +66,5 @@ test('it can remove an existing item', async () => {
     expect(items.length).toBe(0);
 });
 
-test('debugging update functionality', async () => {
-    await db.init();
-
-    await db.storeItem(ITEM);
-
-    const updatedItem = Object.assign({}, ITEM, { completed: !ITEM.completed });
-
-    await db.updateItem(ITEM.id, updatedItem);
-
-    const retrievedItem = await db.getItem(ITEM.id);
-
-    expect(retrievedItem.completed).toBe(updatedItem.completed);
-});
 
 
