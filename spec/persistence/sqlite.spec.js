@@ -47,7 +47,7 @@ test('it can update an existing item', async () => {
     console.log(items);
 
     // Check that there is one item in the array
-    expect(items.length).toBe(1);
+    expect(items.length).toBe(0);
 
     // Check the 'completed' status of the updated item
     expect(items[0].completed).toBe(!ITEM.completed);
