@@ -46,6 +46,24 @@ test('it can update an existing item', async () => {
     expect(items[0].completed).toBe(!ITEM.completed);
 });
 
+test('it can update an existing item', async () => {
+    await db.init();
+
+    await db.storeItem(ITEM);
+
+    console.log('Before update:', ITEM);
+
+    await db.updateItem(
+        ITEM.id,
+        Object.assign({}, ITEM, { completed: !ITEM.completed }),
+    );
+
+    const items = await db.getItems();
+    console.log('After update:', items[0]);
+
+    expect(items.length).toBe(1);
+    expect(items[0].completed).toBe(!ITEM.completed);
+});
 
 
 test('it can get a single item', async () => {
@@ -64,6 +82,20 @@ test('it can remove an existing item', async () => {
 
     const items = await db.getItems();
     expect(items.length).toBe(0);
+});
+
+test('debugging update functionality', async () => {
+    await db.init();
+
+    await db.storeItem(ITEM);
+
+    const updatedItem = Object.assign({}, ITEM, { completed: !ITEM.completed });
+
+    await db.updateItem(ITEM.id, updatedItem);
+
+    const retrievedItem = await db.getItem(ITEM.id);
+
+    expect(retrievedItem.completed).toBe(updatedItem.completed);
 });
 
 
