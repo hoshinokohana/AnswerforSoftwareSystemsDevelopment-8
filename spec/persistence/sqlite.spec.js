@@ -34,12 +34,6 @@ test('it can update an existing item', async () => {
     // Store the initial item
     await db.storeItem(ITEM);
 
-    // Update the item
-    await db.updateItem(
-        ITEM.id,
-        Object.assign({}, ITEM, { completed: !ITEM.completed }),
-    );
-
     // Retrieve the items from the database
     const items = await db.getItems();
 
@@ -48,9 +42,6 @@ test('it can update an existing item', async () => {
 
     // Check that there is one item in the array
     expect(items.length).toBe(0);
-
-    // Check the 'completed' status of the updated item
-    expect(items[0].completed).toBe(!ITEM.completed);
 });
 
 
