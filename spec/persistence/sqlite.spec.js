@@ -65,8 +65,6 @@ test('it can update an existing item', async () => {
     expect(items[0].completed).toBe(!ITEM.completed);
 });
 
-const db = require('../../src/persistence/sqlite');
-
 describe('Update functionality', () => {
   test('it updates the completed status of an item', async () => {
     // Step 1: Create a new item
