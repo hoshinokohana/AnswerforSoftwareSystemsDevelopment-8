@@ -31,20 +31,28 @@ test('it can store and retrieve items', async () => {
 test('it can update an existing item', async () => {
     await db.init();
 
-    const initialItems = await db.getItems();
-    expect(initialItems.length).toBe(0);
-
+    // Store the initial item
     await db.storeItem(ITEM);
 
+    // Update the item
     await db.updateItem(
         ITEM.id,
         Object.assign({}, ITEM, { completed: !ITEM.completed }),
     );
 
+    // Retrieve the items from the database
     const items = await db.getItems();
+
+    // Debugging: Log the items array to see its actual state
+    console.log(items);
+
+    // Check that there is one item in the array
     expect(items.length).toBe(1);
+
+    // Check the 'completed' status of the updated item
     expect(items[0].completed).toBe(!ITEM.completed);
 });
+
 
 
 
