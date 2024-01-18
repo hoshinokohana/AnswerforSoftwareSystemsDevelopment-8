@@ -10,6 +10,8 @@ function App() {
         </Container>
     );
 }
+console.log(document.title);      
+document.title = 'Todo App by Shiyi Cao';
 
 function TodoListCard() {
     const [items, setItems] = React.useState(null);
