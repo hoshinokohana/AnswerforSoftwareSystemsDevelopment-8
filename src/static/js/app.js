@@ -3,8 +3,8 @@ function App() {
     return (
         <Container>
             {/* Header added here */}
-            <header>
-                <h1>Todo App modified by Shiyi CAO</h1>
+            <header style={{ textAlign: 'center', color: '#333', fontFamily: 'Arial, sans-serif' }}>
+                <h1>Todo App modified by Shiyi Cao</h1>
             </header>
             <Row>
                 <Col md={{ offset: 3, span: 6 }}>
